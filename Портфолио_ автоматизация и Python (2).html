@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Портфолио: автоматизация и Python</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F6F8; --surface:#FFFFFF; --ink:#13222D; --muted:#51636F; --line:#CFDAE1;
+  --accent:#0A6E8C; --set:#B9770E; --grid:#E1E9EE;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0D151B; --surface:#14202A; --ink:#E5EEF3; --muted:#9DB0BC; --line:#25384600;
+    --line:#263846; --accent:#56BBD9; --set:#E3A63A; --grid:#1C2C37;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0D151B; --surface:#14202A; --ink:#E5EEF3; --muted:#9DB0BC;
+  --line:#263846; --accent:#56BBD9; --set:#E3A63A; --grid:#1C2C37;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 "Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:720px;margin:0 auto;padding:32px 20px 56px}
+h1{font-size:clamp(28px,7vw,40px);line-height:1.12;margin:0 0 14px;font-weight:700;letter-spacing:-.01em}
+h2{font-size:22px;margin:44px 0 14px;font-weight:700}
+h3{font-size:18px;margin:0 0 6px;font-weight:700}
+p{margin:0 0 12px;max-width:62ch}
+.who{color:var(--muted);margin-bottom:22px}
+.lead{font-size:18px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+.lab{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:24px}
+.lab svg{display:block;width:100%;height:auto}
+.lab .row{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;margin-top:10px}
+.lab label{font-weight:500;min-width:2.6em}
+.lab output{font-variant-numeric:tabular-nums;color:var(--muted);min-width:3em;text-align:right}
+input[type=range]{width:100%;accent-color:var(--accent);height:32px}
+.read{margin:12px 0 0;color:var(--muted);font-size:15px}
+.read b{color:var(--ink)}
+
+.proj{border-top:1px solid var(--line);padding:18px 0}
+.proj:last-of-type{border-bottom:1px solid var(--line)}
+.tools{color:var(--muted);font-size:15px;margin:0}
+
+.skills{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}
+.skills li{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-size:15px}
+.skills li.main{border-color:var(--accent);font-weight:500}
+.contact{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.contact p{margin:0 0 6px}
+</style>
+</head>
+<body>
+<main>
+  <p class="who">Қайыргали Жанарыс, студент 4 курса ЕНУ, автоматизация и управление</p>
+  <h1>Моделирую системы управления и пишу на Python</h1>
+  <p class="lead">Учебные проекты по моделированию производственных линий и настройке регуляторов. Ищу первую работу или стажировку: Python, автоматизация, инженерные расчёты.</p>
+
+  <section class="lab" aria-labelledby="labh">
+    <h3 id="labh">Попробуй сам: ПИ-регулятор</h3>
+    <p style="margin-bottom:8px">Объект первого порядка, цель — выйти на уровень 1. Двигай ползунки и смотри, как меняется переходный процесс.</p>
+    <svg id="plot" viewBox="0 0 320 150" role="img" aria-label="График переходного процесса"></svg>
+    <div class="row"><label for="kp">Kp</label><input id="kp" type="range" min="0" max="8" step="0.1" value="2"><output id="kpo">2.0</output></div>
+    <div class="row"><label for="ki">Ki</label><input id="ki" type="range" min="0" max="6" step="0.1" value="1"><output id="kio">1.0</output></div>
+    <p class="read" id="read"></p>
+  </section>
+
+  <h2>Проекты</h2>
+  <div class="proj">
+    <h3>Линия склеивания мебельных щитов</h3>
+    <p>Имитационная модель производственной линии: потоки заготовок, станки, очереди и загрузка оборудования. Курсовой проект.</p>
+    <p class="tools">AnyLogic</p>
+  </div>
+  <div class="proj">
+    <h3>Система управления температурой горячего пресса</h3>
+    <p>Модель объекта и контура регулирования температуры, подбор параметров ПИД-регулятора. Курсовой проект.</p>
+    <p class="tools">MATLAB, Simulink</p>
+  </div>
+  <div class="proj">
+    <h3>Нечёткий ПИ-регулятор и классический ПИД</h3>
+    <p>Сравнение двух подходов к управлению на одной модели: как каждый ведёт себя в переходном процессе. Лабораторная работа.</p>
+    <p class="tools">MATLAB, Simulink, Fuzzy Logic</p>
+  </div>
+
+  <h2>Навыки</h2>
+  <ul class="skills">
+    <li class="main">Python</li><li class="main">MATLAB</li><li class="main">Simulink</li>
+    <li class="main">AnyLogic</li><li>TIA Portal</li><li>Cisco Packet Tracer</li>
+    <li>GitHub</li><li>MS Excel</li><li>MS Word</li><li>MS PowerPoint</li>
+  </ul>
+
+  <h2>Связаться</h2>
+  <div class="contact">
+    <p>Telegram: <a href="https://t.me/h1k4ru3">@h1k4ru3</a></p>
+    <p>GitHub: <a href="https://github.com/JAKO0606">JAKO0606</a></p>
+    <p>Почта: <a href="mailto:zhanaryskayrgali@gmail.com">zhanaryskayrgali@gmail.com</a></p>
+  </div>
+</main>
+
+<script>
+(function(){
+  var kp=document.getElementById('kp'), ki=document.getElementById('ki');
+  var kpo=document.getElementById('kpo'), kio=document.getElementById('kio');
+  var plot=document.getElementById('plot'), read=document.getElementById('read');
+  var W=320,H=150,L=10,R=310,T=10,B=135,YMAX=2;
+  function sim(a,b){
+    var tau=1.5,dt=0.05,N=240,y=0,I=0,out=[];
+    for(var i=0;i<=N;i++){
+      out.push(y);
+      var e=1-y; I+=e*dt;
+      var u=a*e+b*I;
+      y+=dt*(-y+u)/tau;
+      if(!isFinite(y)||Math.abs(y)>50)y=50;
+    }
+    return out;
+  }
+  function px(i,n){return L+(R-L)*i/n}
+  function py(v){v=Math.max(0,Math.min(YMAX,v));return B-(B-T)*v/YMAX}
+  function draw(){
+    var a=parseFloat(kp.value), b=parseFloat(ki.value);
+    kpo.textContent=a.toFixed(1); kio.textContent=b.toFixed(1);
+    var ys=sim(a,b), n=ys.length-1, s='';
+    for(var g=0;g<=2;g+=0.5){s+='<line x1="'+L+'" x2="'+R+'" y1="'+py(g)+'" y2="'+py(g)+'" stroke="var(--grid)" stroke-width="1"/>';}
+    s+='<line x1="'+L+'" x2="'+R+'" y1="'+py(1)+'" y2="'+py(1)+'" stroke="var(--set)" stroke-width="1.5" stroke-dasharray="5 4"/>';
+    var pts=ys.map(function(v,i){return px(i,n).toFixed(1)+','+py(v).toFixed(1)}).join(' ');
+    s+='<polyline points="'+pts+'" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>';
+    s+='<text x="'+(R-2)+'" y="'+(py(1)-6)+'" text-anchor="end" font-size="10" fill="var(--set)">цель = 1</text>';
+    s+='<text x="'+L+'" y="146" font-size="10" fill="var(--muted)">время, с: 0</text>';
+    s+='<text x="'+R+'" y="146" text-anchor="end" font-size="10" fill="var(--muted)">12</text>';
+    plot.innerHTML=s;
+    var mx=Math.max.apply(null,ys), os=Math.max(0,(mx-1)*100), fin=ys[n];
+    var txt;
+    if(Math.abs(fin-1)>0.05 && mx<1.02){txt='За 12 секунд регулятор не дошёл до цели. Добавь Ki.';}
+    else if(mx>=50){txt='Система ушла в разнос. Уменьши Kp или Ki.';}
+    else{txt='Перерегулирование: <b>'+os.toFixed(0)+'%</b>. Значение в конце: <b>'+fin.toFixed(2)+'</b>.';}
+    read.innerHTML=txt;
+  }
+  kp.addEventListener('input',draw); ki.addEventListener('input',draw);
+  draw();
+})();
+</script>
+</body>
+</html>
